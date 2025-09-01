@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>EchoTravel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, Arial, sans-serif;
+      margin: 16px;
+    }
+    #log {
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>EchoTravel</h1>
+  <div id="status"></div>
+  <label>Target language:
+    <select id="lang">
+      <option value="en">English</option>
+      <option value="de">Deutsch</option>
+      <option value="it">Italiano</option>
+      <option value="pl">Polski</option>
+    </select>
+  </label>
+  <div id="log"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/8.0.0/signalr.min.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const trainId = params.get('trainId') || 'IC6322';
+    const car = params.get('car');
+
+    document.getElementById('status').textContent = `Connected to train: ${trainId}`;
+
+    const hub = new signalR.HubConnectionBuilder()
+      .withUrl('/hubs/announcements')
+      .withAutomaticReconnect()
+      .build();
+
+    hub.on('announcement', msg => {
+      const log = document.getElementById('log');
+      log.textContent = '🔊 [' + msg.trainId + '] ' + msg.translated + '\n(orig: ' + msg.original + ')\n' + log.textContent;
+    });
+
+    hub.start().then(() => {
+      hub.invoke('JoinTrain', trainId, car);
+    }).catch(console.error);
+  </script>
+</body>
+</html>
