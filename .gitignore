@@ -1,0 +1,17 @@
+# Ignore build artifacts and environment files
+
+# .NET build output
+EchoTravel.Api/bin/
+EchoTravel.Api/obj/
+EchoTravel.Api/.vs/
+
+# Python virtual environment
+stt_service/.venv/
+stt_service/__pycache__/
+
+# User secrets and local config overrides
+**/appsettings.*.json.user
+
+# Misc
+*.log
+*.tmp
