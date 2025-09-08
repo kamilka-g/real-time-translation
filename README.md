@@ -73,11 +73,3 @@ This project highlights several important technologies and concepts:
 * **Port/adapter (hexagonal) architecture** — emphasising clean separation between core business logic and external dependencies, enabling easier testing and evolution.
 * **Real‑time web clients** — using SignalR in JavaScript to receive server‑pushed messages and keep multiple clients in sync.
 * **Multilingual domain focus** — solving a real problem for passengers by translating dynamic content into multiple languages in near real‑time.
-
-## Using this Project on a CV
-
-You can describe this repository as a **real‑time translation system** that showcases your skills in microservice architecture, cloud translation services and full‑stack development.  For example:
-
-> *Designed and implemented a microservice‑based train announcement system.  A Python service transcribes audio using Whisper, while a C# ASP.NET Core API translates the text via Azure Translator and publishes updates through SignalR.  Passengers subscribe via QR code and receive announcements in their chosen language.  Applied port/adapter architecture for testability and future‑proofing.*
-
-Feel free to expand the description with metrics (latency, languages supported) or challenges you overcame (integrating STT models, handling long audio streams, caching translations, deploying on containers or cloud services).
